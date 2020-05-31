@@ -1,6 +1,7 @@
 package com.wym.mango.workflow.core;
 
 import com.wym.mango.workflow.annotation.MangoWorkflow;
+import com.wym.mango.workflow.annotation.MangoWorkflowProxy;
 import org.springframework.beans.factory.annotation.AnnotatedBeanDefinition;
 import org.springframework.beans.factory.config.BeanDefinitionHolder;
 import org.springframework.beans.factory.support.BeanDefinitionRegistry;
@@ -22,9 +23,8 @@ public class WorkflowClassPathScanner extends ClassPathBeanDefinitionScanner {
 
     public WorkflowClassPathScanner(BeanDefinitionRegistry registry, WorkflowBeanDefinitionProcessor workflowBeanDefinitionProcessor) {
         super(registry, false);
-        // 不使用默认过滤，使用 jsf 的 provider.
-//        this.addIncludeFilter(new AnnotationTypeFilter(JsfProvider.class));
-        this.addIncludeFilter(new AnnotationTypeFilter(MangoWorkflow.class));
+
+        this.addIncludeFilter(new AnnotationTypeFilter(MangoWorkflowProxy.class));
 
         this.workflowBeanDefinitionProcessor = workflowBeanDefinitionProcessor;
 

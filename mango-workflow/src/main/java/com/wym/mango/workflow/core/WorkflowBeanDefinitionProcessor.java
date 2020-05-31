@@ -6,6 +6,7 @@ import com.google.common.collect.Maps;
 import com.wym.mango.workflow.ApiWorkflowHandler;
 import com.wym.mango.workflow.ApiWorkflowInterfaceEngine;
 import com.wym.mango.workflow.annotation.MangoWorkflow;
+import com.wym.mango.workflow.annotation.MangoWorkflowProxy;
 import lombok.Setter;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Qualifier;
@@ -98,7 +99,7 @@ public class WorkflowBeanDefinitionProcessor {
             return;
         }
 
-        MangoWorkflow proxyAnnotation = (MangoWorkflow) workflowProxyInterface.getAnnotation(MangoWorkflow.class);
+        MangoWorkflowProxy proxyAnnotation = (MangoWorkflowProxy) workflowProxyInterface.getAnnotation(MangoWorkflow.class);
         if (proxyAnnotation == null) {
             return;
         }
@@ -106,8 +107,6 @@ public class WorkflowBeanDefinitionProcessor {
         // 处理代理类
         this.buildWorkflowProxy(workflowProxyInterface, beanName, definition);
 
-        // 处理注册杰夫服务
-//        this.buildJsfProvider(workflowProxyInterface, beanName, definition);
     }
 
 
