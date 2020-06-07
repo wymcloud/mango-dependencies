@@ -99,7 +99,7 @@ public class WorkflowBeanDefinitionProcessor {
             return;
         }
 
-        MangoWorkflowProxy proxyAnnotation = (MangoWorkflowProxy) workflowProxyInterface.getAnnotation(MangoWorkflow.class);
+        MangoWorkflowProxy proxyAnnotation = (MangoWorkflowProxy) workflowProxyInterface.getAnnotation(MangoWorkflowProxy.class);
         if (proxyAnnotation == null) {
             return;
         }

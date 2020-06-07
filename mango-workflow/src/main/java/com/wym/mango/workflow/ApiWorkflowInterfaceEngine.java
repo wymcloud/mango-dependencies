@@ -1,10 +1,13 @@
 package com.wym.mango.workflow;
 
 import com.wym.mango.workflow.exception.ApiBaseException;
+import com.wym.mango.workflow.model.ApiContext;
 import com.wym.mango.workflow.model.ApiRequest;
 import com.wym.mango.workflow.model.ApiResponse;
 import lombok.Data;
 import lombok.Setter;
+import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.util.CollectionUtils;
 
 import java.util.List;
 
@@ -23,50 +26,48 @@ public class ApiWorkflowInterfaceEngine implements ApiWorkflowInterface {
 
 
 
-//    @Override
-//    public ApiResponse execute(ApiRequest request, long timestamp, Object... others) throws ApiBaseException {
-//        if (CollectionUtils.isEmpty(handlers)) {
-//            return null;
-//        }
-//
-//        if (request == null) {
-//            request = new ApiEmptyRequest();
-//        }
-//
-//        String source = getSource();
-//        ApiContext<ApiRequest, ApiResponse> context = new ApiContext(request, source, timestamp);
-//
-//        Qualifier qualifier = null;
-//        for (ApiWorkflowHandler<ApiRequest, ApiResponse> handler : handlers) {
-//
-//            if (qualifier == null) { // 用于做日志记录。
-//                qualifier = handler.getClass().getAnnotation(Qualifier.class);
-//
-//            }
-//
-//            // 记录重复日志
-//            this.deprecatedLogging(timestamp, source, handler);
-//
-//            if (!handler.supports(context, others)) { // 如果不支持，则 continue。
-//                continue;
-//            }
-//
-//            try {
-//                handler.handle(context, others);
-//            } catch (Throwable e) { // 捕获饼处理异常。
+    @Override
+    public ApiResponse execute(ApiRequest request, long timestamp, Object... others) throws ApiBaseException {
+        if (CollectionUtils.isEmpty(handlers)) {
+            return null;
+        }
+
+        if (request == null) {
+            request = new ApiEmptyRequest();
+        }
+
+
+        ApiContext<ApiRequest, ApiResponse> context = new ApiContext(request, null, timestamp);
+
+        Qualifier qualifier = null;
+
+        for (ApiWorkflowHandler<ApiRequest, ApiResponse> handler : handlers) {
+
+            if (qualifier == null) { // 用于做日志记录。
+                qualifier = handler.getClass().getAnnotation(Qualifier.class);
+
+            }
+
+            if (!handler.supports(context, others)) { // 如果不支持，则 continue。
+                continue;
+            }
+
+            try {
+                handler.handle(context, others);
+            } catch (Throwable e) { // 捕获饼处理异常。
 //                handleThrowable(context, e);
-//            } finally {
-//                long duration = System.currentTimeMillis() - timestamp;
-//
-//
-//            }
-//
-//        }
-//
-//        long duration = System.currentTimeMillis() - timestamp;
-//
-//        return context.getResponse();
-//    }
+            } finally {
+                long duration = System.currentTimeMillis() - timestamp;
+
+
+            }
+
+        }
+
+        long duration = System.currentTimeMillis() - timestamp;
+
+        return context.getResponse();
+    }
 
     /**
      * 记录重复日志。
@@ -82,10 +83,6 @@ public class ApiWorkflowInterfaceEngine implements ApiWorkflowInterface {
         }
     }
 
-    @Override
-    public ApiResponse execute(ApiRequest request, long timestamp, Object... others)  {
-        return null;
-    }
 
     @Override
     public void after(ApiRequest request, ApiResponse response, long timestamp, Object... others) {

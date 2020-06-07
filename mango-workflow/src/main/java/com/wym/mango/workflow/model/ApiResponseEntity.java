@@ -10,7 +10,7 @@ import java.io.Serializable;
  * @author "wangshuai131 <wangshuai30@jd.com>" 2017-12-14
  **/
 @Data
-public class ApiResponseEntity<T> implements Serializable {
+public class ApiResponseEntity<T> implements Serializable,ApiResponse {
 
     private static final long serialVersionUID = 2219053580083877694L;
 
