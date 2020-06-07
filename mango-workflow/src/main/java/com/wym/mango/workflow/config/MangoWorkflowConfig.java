@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.core.env.Environment;
 import org.springframework.stereotype.Component;
 
 import javax.annotation.PostConstruct;
@@ -20,22 +21,20 @@ public class MangoWorkflowConfig {
 
     private static final String path = "com.wym.mango.mangocore.workflow.service";
 
-    @PostConstruct
-    public void init(@Value("${mango.workflow.path}") String path){
-        System.out.println(path);
-
-
-
-    }
-
+//    @PostConstruct
+////    public void init(@Value("${mango.workflow.path}") String path){
+////        System.out.println(path);
+////
+////    }
+//    @Autowired
+//    private Environment env;
 //    @Resource
 //    MangoConfigBean mangoConfigBean;
 
 //    @Bean
-//    @Bean
-//    public MangoWorkflowConfigurer mangoWorkflowConfigurer(ApplicationContext applicationContext,
-//                                                           @Value("${mango.workflow.path}") String path) {
-//        return new MangoWorkflowConfigurer(new WorkflowBeanDefinitionProcessor(applicationContext), path);
-//    }
+    @Bean
+    public MangoWorkflowConfigurer mangoWorkflowConfigurer(ApplicationContext applicationContext,Environment env) {
+        return new MangoWorkflowConfigurer(new WorkflowBeanDefinitionProcessor(applicationContext), env.getProperty("asd"));
+    }
 
 }

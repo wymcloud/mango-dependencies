@@ -51,10 +51,6 @@ public class WorkflowBeanDefinitionProcessor {
 
     private final ApplicationContext applicationContext;
 
-    /**
-     * jsf server beans
-     */
-//    private final List<ServerBean> jsfServerBean;
 
     /**
      * 构造方法
@@ -65,9 +61,7 @@ public class WorkflowBeanDefinitionProcessor {
         this.applicationContext = applicationContext;
     }
 
-    public WorkflowBeanDefinitionProcessor(ApplicationContext applicationContext, String jsfServerBeanName, ApplicationContext applicationContext1) {
-        this.applicationContext = applicationContext1;
-    }
+
 
     /**
      * 批量处理
