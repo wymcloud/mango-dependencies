@@ -5,11 +5,6 @@ import com.wym.mango.workflow.model.ApiRequest;
 import com.wym.mango.workflow.model.ApiResponse;
 import org.springframework.core.Ordered;
 
-/**
- * -
- *
- * @author "wangshuai131 <wangshuai30@jd.com>" 2018-01-10
- **/
 public interface ApiWorkflowHandler<REQ extends ApiRequest, RESP extends ApiResponse> extends Ordered {
 
     /**

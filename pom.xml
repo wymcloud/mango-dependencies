@@ -13,31 +13,32 @@
 
     <groupId>com.wym.mango</groupId>
     <artifactId>mango-dependencies</artifactId>
-    <version>0.0.1-SNAPSHOT</version>
+    <version>${version}</version>
     <name>mango-dependencies</name>
     <description>Demo project for Spring Boot</description>
 
     <modules>
         <module>mango-core</module>
         <module>mango-workflow</module>
+        <module>mango-all</module>
+        <module>mango-bom</module>
     </modules>
 
 
     <properties>
         <java.version>1.8</java.version>
+        <revision>0.0.1-SNAPSHOT</revision>
+
     </properties>
 
     <dependencyManagement>
         <dependencies>
             <dependency>
-                <groupId>org.projectlombok</groupId>
-                <artifactId>lombok</artifactId>
-                <version>1.18.12</version>
-            </dependency>
-            <dependency>
-                <groupId>com.google.guava</groupId>
-                <artifactId>guava</artifactId>
-                <version>24.1-android</version>
+                <groupId>com.wym.mango</groupId>
+                <artifactId>mango-bom</artifactId>
+                <version>${revision}</version>
+                <type>pom</type>
+                <scope>import</scope>
             </dependency>
         </dependencies>
     </dependencyManagement>

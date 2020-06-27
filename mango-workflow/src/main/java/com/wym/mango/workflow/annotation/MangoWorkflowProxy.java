@@ -18,6 +18,11 @@ import java.lang.annotation.Target;
 @Component
 public @interface MangoWorkflowProxy {
 
+    /**
+     *  默认值
+     *
+     * @return
+     */
 
     String value() default "";
 }

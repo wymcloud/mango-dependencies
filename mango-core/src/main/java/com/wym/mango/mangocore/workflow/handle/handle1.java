@@ -1,6 +1,7 @@
 package com.wym.mango.mangocore.workflow.handle;
 
 import com.wym.mango.workflow.ApiWorkflowHandler;
+import com.wym.mango.workflow.annotation.MangoOrder;
 import com.wym.mango.workflow.model.ApiContext;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Qualifier;
@@ -9,6 +10,7 @@ import org.springframework.stereotype.Component;
 @Qualifier("handle.test")
 @Component
 @Slf4j
+@MangoOrder("2")
 public class handle1 implements ApiWorkflowHandler {
 
 

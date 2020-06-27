@@ -31,7 +31,7 @@ public class ApiResponseEntity<T> implements Serializable,ApiResponse {
     /**
      * 请求开始时间戳
      */
-//    private long requestTimestamp;
+    private long requestTimestamp;
     /**
      * 请求结束时间戳
      */

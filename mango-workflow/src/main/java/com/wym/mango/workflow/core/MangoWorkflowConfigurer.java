@@ -23,9 +23,6 @@ import org.springframework.util.Assert;
 public class MangoWorkflowConfigurer implements BeanDefinitionRegistryPostProcessor, InitializingBean, ApplicationContextAware, BeanPostProcessor {
 
 
-    /**
-     * 需要扫描的包。
-     */
     private String[] basePackages;
 
     private ApplicationContext applicationContext;
@@ -56,17 +53,11 @@ public class MangoWorkflowConfigurer implements BeanDefinitionRegistryPostProces
     @Override
     public void postProcessBeanDefinitionRegistry(BeanDefinitionRegistry beanDefinitionRegistry) throws BeansException {
         WorkflowClassPathScanner scanner = new WorkflowClassPathScanner(beanDefinitionRegistry, this.workflowBeanDefinitionProcessor);
-
         scanner.setResourceLoader(this.applicationContext);
         scanner.scan(basePackages);
 
     }
 
-    @Override
-    public void postProcessBeanFactory(ConfigurableListableBeanFactory configurableListableBeanFactory) throws BeansException {
-//        保持空
-
-    }
 
     @Override
     public void setApplicationContext(ApplicationContext applicationContext) throws BeansException {
@@ -98,4 +89,8 @@ public class MangoWorkflowConfigurer implements BeanDefinitionRegistryPostProces
     }
 
 
+    @Override
+    public void postProcessBeanFactory(ConfigurableListableBeanFactory configurableListableBeanFactory) throws BeansException {
+
+    }
 }

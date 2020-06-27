@@ -16,7 +16,6 @@ import org.springframework.beans.TypeMismatchException;
 import org.springframework.beans.factory.BeanNameAware;
 import org.springframework.beans.factory.FactoryBean;
 import org.springframework.beans.factory.NoSuchBeanDefinitionException;
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.cglib.proxy.InvocationHandler;
 import org.springframework.cglib.proxy.Proxy;
 import org.springframework.context.ApplicationContext;
@@ -36,7 +35,7 @@ import java.util.Map;
  *
  * @author "wangshuai131 <wangshuai30@jd.com>" 2018-01-06
  **/
-//@Slf4j
+@Slf4j
 public class WorkflowProxyFactoryBean<T> implements FactoryBean<T>, ApplicationContextAware, BeanNameAware {
 
     /**
@@ -108,12 +107,12 @@ public class WorkflowProxyFactoryBean<T> implements FactoryBean<T>, ApplicationC
         Object bean = applicationContext.getBean(engineBeanName);
 
         if (null == bean) {
-//            log.error("not found this bean '{}'. ", engineBeanName);
+            log.error("not found this bean '{}'. ", engineBeanName);
             throw new NoSuchBeanDefinitionException(engineBeanName);
         }
 
         if (!ApiWorkflowInterface.class.isAssignableFrom(bean.getClass())) {
-//            log.error("Bean '{}' type '{}' is wrong, need type '{}'.", engineBeanName, bean.getClass(), ApiWorkflowInterface.class);
+            log.error("Bean '{}' type '{}' is wrong, need type '{}'.", engineBeanName, bean.getClass(), ApiWorkflowInterface.class);
             throw new TypeMismatchException(bean, ApiWorkflowInterface.class);
         }
 

@@ -9,9 +9,14 @@ import java.lang.annotation.Target;
 @Target(ElementType.METHOD)
 @Retention(RetentionPolicy.RUNTIME)
 @Documented
-public @interface MangoOrder {
+public @interface   MangoOrder {
 
+    /**
+     *  默认值
+     *
+     * @return
+     */
 
-    int number() default 0;
+    String value() default "";
 
 }

@@ -223,7 +223,7 @@ public class WorkflowBeanDefinitionProcessor {
         Map<String, ApiWorkflowHandler> classmap = this.applicationContext.getBeansOfType(ApiWorkflowHandler.class);
 
         for (Map.Entry<String, ApiWorkflowHandler> kv : classmap.entrySet()) {
-//                String handlerBeanName = kv.getKey();
+
             ApiWorkflowHandler handler = kv.getValue();
 
             Qualifier group = handler.getClass().getAnnotation(Qualifier.class);

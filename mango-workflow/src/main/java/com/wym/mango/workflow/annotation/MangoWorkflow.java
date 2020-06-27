@@ -14,14 +14,14 @@ import java.lang.annotation.Target;
 public @interface MangoWorkflow {
 
     /**
-     * 绑定的 bean name，留空使用对应的方法名。
+     *  绑定的name
      *
      * @return
      */
     String name() default "";
 
     /**
-     * handler 组，支持多重定义。
+     *  定义的多个handles
      *
      * @return
      */
