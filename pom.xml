@@ -18,7 +18,7 @@
     <description>Demo project for Spring Boot</description>
 
     <modules>
-        <module>mango-core</module>
+        <module>mango-test</module>
         <module>mango-workflow</module>
         <module>mango-all</module>
         <module>mango-bom</module>

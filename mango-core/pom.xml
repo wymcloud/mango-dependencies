@@ -11,9 +11,9 @@
     </parent>
 
     <groupId>com.wym.mango</groupId>
-    <artifactId>mango-core</artifactId>
+    <artifactId>mango-test</artifactId>
     <version>0.0.1-SNAPSHOT</version>
-    <name>mango-core</name>
+    <name>mango-test</name>
     <description>Demo project for Spring Boot</description>
 
     <properties>
